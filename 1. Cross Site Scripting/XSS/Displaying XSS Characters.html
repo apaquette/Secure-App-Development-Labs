@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.header, .footer {
+  background-color: grey;
+  color: white;
+  padding: 15px;
+}
+
+.column {
+  float: left;
+  padding: 15px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.menu {
+  width: 25%;
+}
+
+.content {
+  width: 75%;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #33b5e5;
+  color: #ffffff;
+}
+
+.menu li:hover {
+  background-color: #0099cc;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Displaying XSS Characters</h1>
+</div>
+
+<div class="clearfix">
+  <div class="column menu">
+    <ul>
+	  <li><a href="../index.php">Main Menu</a></li>
+      <li><a href="lab01.php">Challenge 1</a></li>
+      <li><a href="lab02.php">Challenge 2</a></li>
+      <li><a href="lab03.php">Challenge 3</a></li>
+      <li><a href="lab04.php">Challenge 4</a></li>
+	  <li><a href="lab05.php">Challenge 5</a></li>
+      <li><a href="lab06.php">Challenge 6</a></li>
+      <li><a href="lab07.php">Challenge 7</a></li>
+      <li><a href="lab08.php">Challenge 8</a></li>
+	  <li><a href="lab09.php">Challenge 9</a></li>
+      <li><a href="lab10.php">Challenge 10</a></li>
+      <li><a href="lab11.html">Challenge 11</a></li>
+      <li><a href="Displaying XSS Characters.html">XSS Characters Browser Display</a></li>
+    </ul>
+  </div>
+
+  <div class="column content">
+    <h1>Displaying XSS Characters</h1>
+    <p>This displays different methods that an applications can utilise to display unsafe characters. <br>
+How you display these characters inside your application are context dependent, unique to your application implementation.<br>
+Review the source of this page to view the underlying encoding used.<br>
+Note: Different browsers may behave slightly differently.
+Full list located at:
+<br>
+https://dev.w3.org/html5/html-author/charref
+	
+  </div> 
+  
+  <div class="column content">
+
+Display 1 <br>
+<input type="text" id="fname" name="fname" value="%3Cscript%3Ealert%282%29%3C%2Fscript%3E" size="100"><br><br>
+
+<br><br>
+Display 2
+<br>
+<script>alert&#x00028;1&#x00029;</script>
+
+
+<br><br>
+Display 3
+<br>
+&#x0003C;script&#x0003E; alert&#x00028;1&#x00029;  &#x0003C;&#x0002F;script&#x0003E;
+
+
+<br><br>
+Display 4
+<br>
+%3Cscript%3Ealert%282%29%3C%2Fscript%3E
+
+
+<br><br>
+Display 5
+<br>
+&lt;script&gt;alert&lpar;123&rpar;&lt;&sol;script&gt;
+
+
+<br><br>
+Display 6
+<br>
+<input type="text" id="fname" name="fname" value="&lt;script&gt;alert&lpar;'123'&rpar;&lt;&sol;script&gt;" size="100">
+
+
+<br><br>
+Display 7
+<br>
+<input type="text" id="fname" name="fname" value="&lt;script&gt;alert&lpar;&ldquo;123&ldquo;&rpar;&lt;&sol;script&gt;" size="100">
+
+<br><br>
+Display 8
+<br>
+<input type="text" id="fname" name="fname" value="&lt;script&gt;alert&lpar;"123"&rpar;&lt;&sol;script&gt;" size="100">
+
+<br><br>
+Display 9
+<br>
+<input type="text" id="fname" name="fname" value="&#x0003C;script&#x0003E; alert&#x00028;1&#x00029;  &#x0003C;&#x0002F;script&#x0003E;" size="100">
+<br>
+  </div>
+	
+</div>
+
+<div class="footer">
+  <p>Break me first then try fix me....</p>
+</div>
+
+</body>
+</html>
